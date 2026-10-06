@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoNovaX | Concesionario</title>
+  <meta name="description" content="AutoNovaX - Vehículos seleccionados, financiación y atención personalizada.">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,Arial,sans-serif;background:#f5f6f8;color:#111827;line-height:1.5}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1160px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(10,12,16,.94);backdrop-filter:blur(12px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+    nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:1.55rem;font-weight:900;letter-spacing:-1px}
+    .logo span{color:#e63946}
+    .navlinks{display:flex;gap:28px;font-size:.95rem;color:#d1d5db}
+    .navlinks a:hover{color:#fff}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:13px 20px;font-weight:800;cursor:pointer;transition:.2s}
+    .btn-red{background:#e63946;color:#fff}.btn-red:hover{background:#c92e3a;transform:translateY(-1px)}
+    .btn-dark{background:#111827;color:#fff}
+    .hero{min-height:620px;display:grid;place-items:center;color:#fff;position:relative;overflow:hidden;background:
+      linear-gradient(90deg,rgba(5,7,10,.88),rgba(5,7,10,.42)),
+      url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85") center/cover}
+    .hero-content{padding:90px 0;max-width:760px}
+    .eyebrow{display:inline-block;color:#ff6b76;font-weight:900;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;margin-bottom:16px}
+    h1{font-size:clamp(3rem,7vw,5.8rem);line-height:.94;letter-spacing:-4px;margin-bottom:24px}
+    .hero p{font-size:1.15rem;color:#e5e7eb;max-width:600px;margin-bottom:30px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .searchbox{background:#fff;border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.14);padding:22px;margin-top:-48px;position:relative;z-index:5}
+    .searchgrid{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:12px}
+    select,input{width:100%;padding:13px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;color:#374151;outline:none}
+    section{padding:80px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:30px}
+    .section-head h2{font-size:2.3rem;letter-spacing:-1.5px}
+    .section-head p{color:#6b7280;max-width:540px}
+    .cars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e7e9ee;box-shadow:0 8px 28px rgba(17,24,39,.06);transition:.25s}
+    .card:hover{transform:translateY(-5px);box-shadow:0 18px 42px rgba(17,24,39,.12)}
+    .car-img{height:215px;background-size:cover;background-position:center;position:relative}
+    .tag{position:absolute;top:14px;left:14px;background:#e63946;color:#fff;padding:6px 10px;border-radius:7px;font-size:.72rem;font-weight:900;text-transform:uppercase}
+    .card-body{padding:20px}
+    .brand{color:#6b7280;font-size:.8rem;text-transform:uppercase;font-weight:800;letter-spacing:1px}
+    .card h3{font-size:1.35rem;margin:4px 0 10px}
+    .specs{display:flex;gap:14px;color:#6b7280;font-size:.82rem;padding-bottom:17px;border-bottom:1px solid #eee}
+    .price-row{display:flex;align-items:center;justify-content:space-between;padding-top:17px}
+    .price{font-size:1.4rem;font-weight:900}
+    .finance{background:#111318;color:#fff;border-radius:24px;padding:55px;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+    .finance h2{font-size:2.6rem;line-height:1.05;letter-spacing:-1.5px;margin-bottom:15px}
+    .finance p{color:#c8cbd1;max-width:600px;margin-bottom:24px}
+    .finance-box{background:#fff;color:#111827;border-radius:16px;padding:25px}
+    .finance-box strong{font-size:2.4rem;display:block}
+    .finance-box small{color:#6b7280}
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .contact-card{background:#fff;border:1px solid #e7e9ee;border-radius:16px;padding:28px}
+    .contact-card h3{margin-bottom:16px;font-size:1.35rem}
+    .contact-item{padding:12px 0;border-bottom:1px solid #eee;color:#4b5563}
+    .contact-item:last-child{border:0}
+    footer{background:#0a0c10;color:#aeb3bd;padding:30px 0}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .footer-logo{color:#fff;font-weight:900;font-size:1.2rem}
+    @media(max-width:850px){
+      .navlinks{display:none}.searchgrid{grid-template-columns:1fr 1fr}.cars{grid-template-columns:1fr 1fr}
+      .finance{grid-template-columns:1fr;padding:35px}.contact{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){
+      h1{letter-spacing:-2px}.hero{min-height:570px}.searchgrid,.cars{grid-template-columns:1fr}
+      .searchbox{margin-top:-30px}.section-head{display:block}.section-head p{margin-top:8px}
+      section{padding:60px 0}.finance h2{font-size:2rem}.footer-row{display:block}.footer-row p{margin-top:8px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#">Auto<span>Nova</span>X</a>
+      <div class="navlinks">
+        <a href="#vehiculos">Vehículos</a>
+        <a href="#financiacion">Financiación</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <a class="btn btn-red" href="#contacto">Contactar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Concesionario AutoNovaX</div>
+        <h1>Tu próximo coche empieza aquí.</h1>
+        <p>Vehículos seleccionados, precios competitivos y un servicio pensado para que comprar tu coche sea fácil.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="#vehiculos">Ver vehículos</a>
+          <a class="btn" style="background:#fff;color:#111827" href="#contacto">Solicitar información</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="searchbox">
+      <div class="searchgrid">
+        <select><option>Marca</option><option>BMW</option><option>Mercedes-Benz</option><option>Audi</option><option>Volkswagen</option></select>
+        <select><option>Modelo</option><option>Serie 3</option><option>Clase A</option><option>A3</option><option>Golf</option></select>
+        <select><option>Precio máximo</option><option>20.000 €</option><option>30.000 €</option><option>40.000 €</option><option>50.000 €</option></select>
+        <select><option>Combustible</option><option>Gasolina</option><option>Diésel</option><option>Híbrido</option><option>Eléctrico</option></select>
+        <button class="btn btn-red" onclick="document.getElementById('vehiculos').scrollIntoView()">Buscar</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="vehiculos">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Stock destacado</div>
+          <h2>Vehículos seleccionados</h2>
+        </div>
+        <p>Una selección de modelos listos para entregar. Cambia estos vehículos por tu stock real cuando quieras.</p>
+      </div>
+      <div class="cars">
+        <article class="card">
+          <div class="car-img" style="background-image:url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80')"><span class="tag">Destacado</span></div>
+          <div class="card-body"><div class="brand">BMW</div><h3>Serie 3 M Sport</h3><div class="specs"><span>2023</span><span>28.500 km</span><span>Gasolina</span></div><div class="price-row"><span class="price">34.900 €</span><a class="btn btn-dark" href="#contacto">Ver más</a></div></div>
+        </article>
+        <article class="card">
+          <div class="car-img" style="background-image:url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80')"><span class="tag">Oferta</span></div>
+          <div class="card-body"><div class="brand">Mercedes-Benz</div><h3>Clase A AMG Line</h3><div class="specs"><span>2022</span><span>36.200 km</span><span>Diésel</span></div><div class="price-row"><span class="price">29.500 €</span><a class="btn btn-dark" href="#contacto">Ver más</a></div></div>
+        </article>
+        <article class="card">
+          <div class="car-img" style="background-image:url('https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80')"><span class="tag">Nuevo</span></div>
+          <div class="card-body"><div class="brand">Audi</div><h3>A5 S line</h3><div class="specs"><span>2024</span><span>12.800 km</span><span>Híbrido</span></div><div class="price-row"><span class="price">41.900 €</span><a class="btn btn-dark" href="#contacto">Ver más</a></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="financiacion">
+    <div class="container">
+      <div class="finance">
+        <div>
+          <div class="eyebrow">Financiación</div>
+          <h2>Conduce hoy.<br>Financia a tu medida.</h2>
+          <p>Te ayudamos a encontrar una cuota que encaje contigo, con opciones de financiación adaptadas a cada vehículo.</p>
+          <a class="btn btn-red" href="#contacto">Quiero información</a>
+        </div>
+        <div class="finance-box">
+          <small>Ejemplo orientativo</small>
+          <strong>Desde 299 €/mes</strong>
+          <p style="margin:8px 0 0;color:#6b7280">Consulta condiciones, entrada y plazo con nuestro equipo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="section-head">
+        <div><div class="eyebrow">Estamos aquí</div><h2>Hablemos de tu próximo coche</h2></div>
+        <p>Escríbenos para consultar un vehículo, pedir una valoración o concertar una visita.</p>
+      </div>
+      <div class="contact">
+        <div class="contact-card">
+          <h3>AutoNovaX</h3>
+          <div class="contact-item">📍 Av. Principal 123, España</div>
+          <div class="contact-item">📞 +34 600 000 000</div>
+          <div class="contact-item">✉️ info@autonovax.es</div>
+          <div class="contact-item">🕘 L-V 09:00–20:00 · S 10:00–14:00</div>
+        </div>
+        <div class="contact-card">
+          <h3>Solicita información</h3>
+          <form onsubmit="event.preventDefault(); alert('Gracias. Hemos recibido tu solicitud.');">
+            <input required placeholder="Nombre" style="margin-bottom:10px">
+            <input required type="tel" placeholder="Teléfono" style="margin-bottom:10px">
+            <input required type="email" placeholder="Email" style="margin-bottom:10px">
+            <textarea required placeholder="¿Qué vehículo te interesa?" style="width:100%;height:95px;padding:13px;border:1px solid #e5e7eb;border-radius:10px;resize:vertical;margin-bottom:12px"></textarea>
+            <button class="btn btn-red" style="width:100%">Enviar solicitud</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div class="footer-logo">AutoNovaX</div>
+    <p>© 2026 AutoNovaX · Todos los derechos reservados</p>
+  </div>
+</footer>
+</body>
+</html>
